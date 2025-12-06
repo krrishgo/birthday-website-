@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Happy Birthday Ishanvi!</title>
+  <link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Quicksand:wght@300;500;700&display=swap" rel="stylesheet">
+  <style>
+    /* --- CSS STYLES (improved) --- */
+    :root{
+      --wall-color:#ffe4e1;
+      --floor-color:#ffb7b2;
+      --accent-pink:#ff69b4;
+      --mug-color:#fff;
+    }
+
+    html,body{
+      margin:0;
+      padding:0;
+      width:100%;
+      height:100%;
+      font-family:'Quicksand',sans-serif;
+      background-color:var(--wall-color);
+    }
+
+    .room{
+      position:relative;
+      width:100vw;
+      height:100vh;
+      display:flex;
+      justify-content:center;
+      align-items:center;
+      perspective:1000px;
+      overflow:hidden;
+    }
+
+    .floor{
+      position:absolute;
+      bottom:0;
+      width:100%;
+      height:35%;
+      background:linear-gradient(to bottom,var(--floor-color),#ff9e99);
+      z-index:1;
+    }
+
+    .window{
+      position:absolute;
+      top:15%;
+      left:50%;
+      transform:translateX(-50%);
+      width:200px;
+      height:200px;
+      background:#d4f1f4;
+      border:8px solid white;
+      border-radius:20px;
+      box-shadow:0 0 20px rgba(255,192,203,0.5);
+      z-index:2;
+      overflow:hidden;
+    }
+    .window::after{
+      content:'';
+      position:absolute;
+      top:-50%;
+      left:-50%;
+      width:200%;
+      height:200%;
+      background:linear-gradient(45deg,transparent 45%, rgba(255,255,255,0.6) 50%, transparent 55%);
+      animation:shine 6s linear infinite;
+    }
+
+    .mug-container{
+      position:absolute;
+      z-index:10;
+      pointer-events:none;
+    }
+
+    .mug{
+      width:60px;
+      height:50px;
+      background:var(--mug-color);
+      border-radius:0 0 25px 25px;
+      position:relative;
+      box-shadow:0 4px 10px rgba(0,0,0,0.1);
+    }
+
+    .mug::before{
+      content:'';
+      position:absolute;
+      right:-15px;
+      top:10px;
+      width:20px;
+      height:25px;
+      border:5px solid var(--mug-color);
+      border-left:none;
+      border-radius:0 15px 15px 0;
+    }
+
+    .mug-container .steam{
+      position:absolute;
+      top:-20px;
+      width:8px;
+      height:20px;
+      background:rgba(255,255,255,0.85);
+      border-radius:50%;
+      opacity:0;
+      filter:blur(4px);
+      animation:steamRise 2s infinite;
+    }
+    .steam.s1{ left:45%; }
+    .steam.s2{ left:35%; animation-delay:0.5s; }
+    .steam.s3{ left:55%; animation-delay:1s; }
+
+    .m1{ top:30%; left:15%; animation:float 4s ease-in-out infinite; }
+    .m2{ top:60%; right:20%; animation:float 5s ease-in-out infinite 1s; transform:scale(1.2); }
+    .m3{ top:20%; right:10%; animation:float 4.5s ease-in-out infinite 0.5s; transform:scale(0.9); }
+    .m4{ bottom:15%; left:25%; animation:float 6s ease-in-out infinite 2s; }
+
+    .card{
+      background:rgba(255,255,255,0.95);
+      padding:36px;
+      border-radius:28px;
+      text-align:center;
+      z-index:100;
+      max-width:420px;
+      box-shadow:0 10px 30px rgba(255,105,180,0.28);
+      border:4px solid var(--accent-pink);
+      animation:popIn .8s ease forwards;
+    }
+
+    h1{
+      font-family:'Pacifico',cursive;
+      color:var(--accent-pink);
+      font-size:2.4em;
+      margin:0 0 6px;
+    }
+
+    p{
+      color:#555;
+      font-size:1.05em;
+      line-height:1.5;
+    }
+
+    .btn{
+      background:var(--accent-pink);
+      color:#fff;
+      border:none;
+      padding:12px 28px;
+      font-size:1.05em;
+      border-radius:50px;
+      cursor:pointer;
+      margin-top:18px;
+      font-weight:700;
+      transition:0.2s;
+    }
+    .btn:hover{
+      transform:scale(1.05);
+      box-shadow:0 6px 16px rgba(255,105,180,0.35);
+    }
+
+    .hidden-message{
+      opacity:0;
+      margin-top:18px;
+      transition:0.4s;
+      font-style:italic;
+      color:#d63384;
+      font-weight:700;
+    }
+    .hidden-message.show{
+      opacity:1;
+    }
+
+    #confetti{
+      position:absolute;
+      top:0;
+      left:0;
+      width:100%;
+      height:100%;
+      pointer-events:none;
+      z-index:999;
+      transition:opacity .7s;
+    }
+    #confetti.hidden{
+      opacity:0;
+    }
+
+    @keyframes float{
+      0%,100%{ transform:translateY(0); }
+      50%{ transform:translateY(-20px); }
+    }
+    @keyframes steamRise{
+      0%{ opacity:0; transform:translateY(0); }
+      50%{ opacity:0.7; }
+      100%{ opacity:0; transform:translateY(-30px); }
+    }
+    @keyframes shine{
+      0%{ transform:translate(-150%,-150%); }
+      100%{ transform:translate(150%,150%); }
+    }
+    @keyframes popIn{
+      from{ opacity:0; transform:scale(0.5); }
+      to{ opacity:1; transform:scale(1); }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="room">
+    <div class="window"></div>
+    <div class="floor"></div>
+
+    <!-- Floating mugs -->
+    <div class="mug-container m1">
+      <div class="mug"></div>
+      <div class="steam s1"></div>
+      <div class="steam s2"></div>
+      <div class="steam s3"></div>
+    </div>
+
+    <div class="mug-container m2">
+      <div class="mug" style="background:#ffebcd;"></div>
+      <div class="steam s1"></div>
+      <div class="steam s2"></div>
+      <div class="steam s3"></div>
+    </div>
+
+    <div class="mug-container m3">
+      <div class="mug" style="background:#ffe4e1;"></div>
+      <div class="steam s1"></div>
+      <div class="steam s2"></div>
+      <div class="steam s3"></div>
+    </div>
+
+    <div class="mug-container m4">
+      <div class="mug"></div>
+      <div class="steam s1"></div>
+      <div class="steam s2"></div>
+      <div class="steam s3"></div>
+    </div>
+
+    <div class="card">
+      <h1>Happy Birthday<br>Ishanvi! ☕🌸</h1>
+      <p>
+        To the girl whose warmth is as comforting as a fresh cup of coffee.
+        <br><br>
+        May your day be filled with your favorite brew, lots of happiness, and endless joy!
+      </p>
+
+      <button class="btn" onclick="celebrate()">Tap for a Surprise!</button>
+
+      <div id="hiddenMessage" class="hidden-message">
+        "Life is better with friends like you — God bless you! Keep shining, keep smiling." ❤☕
+      </div>
+    </div>
+  </div>
+
+  <canvas id="confetti"></canvas>
+
+  <script>
+    function celebrate() {
+      const msg = document.getElementById("hiddenMessage");
+      msg.classList.add("show");
+
+      const canvas = document.getElementById("confetti");
+      const ctx = canvas.getContext("2d");
+      canvas.width = innerWidth;
+      canvas.height = innerHeight;
+
+      const pieces = [];
+      const colors = ['#ff69b4','#ffb7b2','#ffd700','#ffffff'];
+
+      for (let i = 0; i < 150; i++) {
+        pieces.push({
+          x: Math.random() * canvas.width,
+          y: Math.random() * canvas.height - canvas.height,
+          w: Math.random() * 10 + 5,
+          h: Math.random() * 10 + 5,
+          color: colors[Math.floor(Math.random() * colors.length)],
+          speed: Math.random() * 3 + 2,
+          angle: Math.random() * 360
+        });
+      }
+
+      let running = true;
+      const start = performance.now();
+
+      function draw(now){
+        if(!running) return;
+        ctx.clearRect(0,0,canvas.width,canvas.height);
+
+        for(const p of pieces){
+          ctx.fillStyle = p.color;
+          ctx.save();
+          ctx.translate(p.x,p.y);
+          ctx.rotate(p.angle*Math.PI/180);
+          ctx.fillRect(-p.w/2,-p.h/2,p.w,p.h);
+          ctx.restore();
+
+          p.y += p.speed;
+          p.angle += 2;
+
+          if(p.y > canvas.height){
+            p.y = -20;
+            p.x = Math.random()*canvas.width;
+          }
+        }
+
+        if(now - start > 8000){
+          running = false;
+          canvas.classList.add("hidden");
+          return;
+        }
+
+        requestAnimationFrame(draw);
+      }
+
+      requestAnimationFrame(draw);
+    }
+  </script>
+
+</body>
+</html>
